@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TH.User;
 
 namespace WebSite.Controllers
 {
@@ -13,18 +14,18 @@ namespace WebSite.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult CreateUser()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Create User.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult UserList()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            ViewBag.Message = "User List.";
+            var users = new UserService();
+            return View(users);
         }
     }
 }
