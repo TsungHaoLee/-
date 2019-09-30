@@ -1,5 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "使用者列表";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+
+<table id="userList">
+
+</table>
+<script>
+    $(document).ready(function () {
+        window.Layout.GetUserSection();
+    })
+</script>

@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\api\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -199,6 +200,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\THJavascript\Layout.js" />
     <Content Include="Scripts\THJavascript\User.js" />
     <Content Include="Scripts\THJavascript\UserInfoControl.js" />
     <Content Include="Scripts\THJavascript\Validate.js" />
@@ -235,6 +237,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TH.DB\TH.DB.csproj">
+      <Project>{456B1E0E-A19F-492C-A9E5-42064015D82F}</Project>
+      <Name>TH.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TH.User\TH.User.csproj">
       <Project>{ae35b982-2cf9-4807-a9a1-fb44807105a8}</Project>
       <Name>TH.User</Name>

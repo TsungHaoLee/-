@@ -21,7 +21,12 @@ namespace WebSite
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/TH").Include(
+                    "~/Scripts/THJavascript/User.js",
+                    "~/Scripts/THJavascript/UserInfoControl.js",
+                    "~/Scripts/THJavascript/Validate.js",
+                    "~/Scripts/THJavascript/Layout.js"
+                ));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
