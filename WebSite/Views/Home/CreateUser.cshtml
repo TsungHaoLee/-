@@ -4,9 +4,9 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<input type="text" name="userName" value="" />
-<input type="password" name="password" value="" />
-<input type="password" name="confirmPassword" value="" />
+<input type="text" name="userName" class="userName" value="" />
+<input type="password" name="password" class="password" value="" />
+<input type="password" name="confirmPassword" class="password" value="" />
 <address name="address"></address>
 <input type="text" name="phone" value="" />
-<input type="button" name="name" value="建立使用者" />
+<input type="button" name="name" value="建立使用者" onclick="window.User.CreateUser()" />

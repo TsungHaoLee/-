@@ -7,9 +7,15 @@
 
     public class UserController : ApiController
     {
+        [HttpGet]
         public List<User> Get()
         {
             return new UserService().GetUsers();
+        }
+        [HttpPost]
+        public bool CreateUser(User user)
+        {
+            return new UserService().SaveUser(user);
         }
     }
 }

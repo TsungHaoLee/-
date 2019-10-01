@@ -10,6 +10,9 @@ window.User = window.User || {
         if (!this.ValidateUser(user)) {
             return;
         }
+        $.post('/api/User', user, function (result) {
+            alert(result);
+        });
     },
     UpdateUser: function (user) {
         alert("UpdateUser");
