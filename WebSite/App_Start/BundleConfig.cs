@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Security.Cryptography;
+using System.Web;
 using System.Web.Optimization;
 
 namespace WebSite
@@ -30,6 +32,7 @@ namespace WebSite
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

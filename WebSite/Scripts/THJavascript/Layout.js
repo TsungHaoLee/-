@@ -7,7 +7,6 @@ if (typeof jQuery === 'undefined') {
 window.Layout = window.Layout || {
     GetUserSection: function () {
         var users = User.GetUser();
-        var array = users.map(a => a.value);
         $("#userList").DataTable({
             data: users,
             columns: [

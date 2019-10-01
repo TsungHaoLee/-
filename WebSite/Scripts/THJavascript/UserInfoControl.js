@@ -10,34 +10,49 @@ window.User = window.User || {
         if (!this.ValidateUser(user)) {
             return;
         }
-        $.post('/api/User', user, function (result) {
-            alert(result);
-        });
+        try {
+            $.post('/api/User', user, function (result) {
+                if (result) {
+                    window.location.reload();
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    ShowUserList: function () {
+        this.GetUser(function (data) {
+            $("#userList").DataTable({
+                data: data,
+                columns: [
+                    { data: 'UserName', title: 'UserName' },
+                    { data: 'Password', title: 'Password' },
+                    { data: 'ConfirmPassword', title: 'ConfirmPassword' }
+                ],
+            });
+        })
     },
     UpdateUser: function (user) {
         alert("UpdateUser");
     },
-    GetUser: function () {
-        var users = [];
-        users.push(new UserInfo('1@gmail.com', '1', '1'));
-        users.push(new UserInfo('2@gmail.com', '1', '1'));
-        users.push(new UserInfo('3@gmail.com', '1', '1'));
-        users.push(new UserInfo('4@gmail.com', '1', '1'));
-        users.push(new UserInfo('5@gmail.com', '1', '1'));
-        return users;
+    GetUser: function (callback) {
+        $.get('/api/User', function (data) {
+            callback(data);
+        })
     },
     DeletedUser: function (userId) {
         alert("DeletedUser");
     },
     GetUserInfoModel: function () {
-        var userName = $('input[type="text"].userName').val();
+        var userName = $('input[type="email"].userName').val();
         var passwords = $('input[type="password"].password');
         if (passwords.length != 2) {
             return;
         }
         var password = passwords[0].value;
         var confirmPassword = passwords[1].value;
-        var user = new UserInfo(userName, password, confirmPassword);
+        var address = $('textarea.address').val();
+        var user = new UserInfo(userName, password, confirmPassword, address);
         return user;
     },
     ValidateUser: function (user) {

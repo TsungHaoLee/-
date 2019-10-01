@@ -19,6 +19,11 @@
                     if (user.Id == Guid.Empty)
                     {
                         user.Id = Guid.NewGuid();
+                        user.CreateBy = user.UserName;
+                        user.CreateDate = DateTime.Now;
+                        user.ModifiedBy = user.UserName;
+                        user.ModifiedDate = DateTime.Now;
+                        user.Enable = true;
                     }
                     var oldData = db.User.Where(c => c.Id == user.Id).FirstOrDefault();
                     if (oldData == null)
@@ -33,7 +38,7 @@
                     return true;
                 }
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }
