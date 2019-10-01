@@ -3,10 +3,16 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
-<input type="text" name="userName" class="userName" value="" />
-<input type="password" name="password" class="password" value="" />
-<input type="password" name="confirmPassword" class="password" value="" />
-<address name="address"></address>
-<input type="text" name="phone" value="" />
-<input type="button" name="name" value="建立使用者" onclick="window.User.CreateUser()" />
+<form class="text-center border border-light p-5" action="#!">
+    <input type="email" name="userName" class="userName form-control mb-4" placeholder="Email" value="" />
+    <input type="password" name="password" class="password form-control mb-4" placeholder="Password" value="" />
+    <input type="password" name="confirmPassword" class="password form-control mb-4" placeholder="Confirm Password" value="" />
+    <textarea name="address" placeholder="Address" class="form-control mb-4"></textarea>
+    <input type="button" name="name" class="btn btn-info my-4 btn-block" value="建立使用者" onclick="window.User.CreateUser()" />
+</form>
+<style>
+    .mb-4, .my-4 {
+        margin-bottom: 1.5rem !important;
+        max-width : none !important;
+    }
+</style>
