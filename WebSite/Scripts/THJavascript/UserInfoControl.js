@@ -27,7 +27,7 @@ window.User = window.User || {
                 columns: [
                     { data: 'UserName', title: 'UserName' },
                     { data: 'Password', title: 'Password' },
-                    { data: 'ConfirmPassword', title: 'ConfirmPassword' }
+                    { data: 'Address', title: 'Address' }
                 ],
             });
         })
@@ -36,9 +36,13 @@ window.User = window.User || {
         alert("UpdateUser");
     },
     GetUser: function (callback) {
-        $.get('/api/User', function (data) {
-            callback(data);
-        })
+        try {
+            $.get('/api/User', function (data) {
+                callback(data);
+            });
+        } catch (e) {
+            console.error(e);
+        }
     },
     DeletedUser: function (userId) {
         alert("DeletedUser");
