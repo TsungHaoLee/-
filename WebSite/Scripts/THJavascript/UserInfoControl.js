@@ -5,6 +5,7 @@ if (typeof jQuery === 'undefined') {
 }
 
 window.User = window.User || {
+    Users : new Array(),
     CreateUser: function () {
         var user = this.GetUserInfoModel();
         if (!this.ValidateUser(user)) {
@@ -22,12 +23,27 @@ window.User = window.User || {
     },
     ShowUserList: function () {
         this.GetUser(function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var tempUser = new UserInfo(data[i].UserName, data[i].Password, data[i].Password, data[i].Address, data[i].Id);
+                console.log(tempUser);
+                window.User.Users.push(tempUser);
+            }
             $("#userList").DataTable({
                 data: data,
+                columnDefs: [{
+                    "targets": 0,
+                    "data": null,
+                    "defaultContent": "<button>Click!</button>"
+                }],
                 columns: [
+                    {
+                        data: 'Id', render: function (data, type, row, meta) {
+                            return '<button class="btn btn-primary btn-block" onClick="window.User.ShowPopup(' + data + ')">Edit</button>';
+                        }
+                    },
                     { data: 'UserName', title: 'UserName' },
                     { data: 'Password', title: 'Password' },
-                    { data: 'Address', title: 'Address' }
+                    { data: 'Address', title: 'Address' },
                 ],
             });
         })
