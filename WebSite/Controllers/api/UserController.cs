@@ -22,5 +22,12 @@
         {
             return new UserService().SaveUser(user);
         }
+
+        [HttpPost]
+        [Route("api/User/Test")]
+        public bool GetValue()
+        {
+            return false;
+        }
     }
 }
