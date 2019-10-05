@@ -90,6 +90,7 @@ window.User = window.User || {
         var confirmPassword = passwords[1].value;
         var address = $('textarea.address').val();
         var id = $('input[type="text"].id').val();
+        console.log(id);
         if (id == undefined) {
             var user = new UserInfo(userName, password, confirmPassword, address);
             return user;
