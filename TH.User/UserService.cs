@@ -32,6 +32,11 @@
                     }
                     else
                     {
+                        user.CreateBy = oldData.CreateBy;
+                        user.CreateDate = oldData.CreateDate;
+                        user.ModifiedBy = oldData.ModifiedBy;
+                        user.ModifiedDate = DateTime.Now;
+                        user.Enable = oldData.Enable;
                         db.Entry(oldData).CurrentValues.SetValues(user);
                     }
                     db.SaveChanges();

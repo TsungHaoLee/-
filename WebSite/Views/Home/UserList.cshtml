@@ -4,8 +4,39 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 <table id="userList" class="table table-striped table-bordered" style="width:100%"></table>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User Update</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="text-center border border-light p-5" action="#!">
+                    <input type="email" name="userName" class="userName form-control mb-4" placeholder="Email" value="" />
+                    <input type="password" name="password" class="password form-control mb-4" placeholder="Password" value="" />
+                    <input type="password" name="confirmPassword" class="password form-control mb-4" placeholder="Confirm Password" value="" />
+                    <textarea name="address" placeholder="Address" class="address form-control mb-4"></textarea>
+                    <input hidden value="" type="text" class="id" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="window.User.UpdateUser()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
        window.User.ShowUserList();
     })
 </script>
+<style>
+    .mb-4, .my-4 {
+        margin-bottom: 1.5rem !important;
+        max-width: none !important;
+    }
+</style>

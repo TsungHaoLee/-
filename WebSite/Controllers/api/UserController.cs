@@ -17,5 +17,10 @@
         {
             return new UserService().SaveUser(user);
         }
+        [HttpPut]
+        public bool UpdateUser(User user)
+        {
+            return new UserService().SaveUser(user);
+        }
     }
 }

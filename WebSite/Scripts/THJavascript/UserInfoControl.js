@@ -38,7 +38,7 @@ window.User = window.User || {
                 columns: [
                     {
                         data: 'Id', render: function (data, type, row, meta) {
-                            return '<button class="btn btn-primary btn-block" onClick="window.User.ShowPopup(' + data + ')">Edit</button>';
+                            return '<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" onClick="' + "window.User.ShowPopup('" + data + "')"+'">Edit</button>';
                         }
                     },
                     { data: 'UserName', title: 'UserName' },
@@ -48,8 +48,25 @@ window.User = window.User || {
             });
         })
     },
-    UpdateUser: function (user) {
-        alert("UpdateUser");
+    UpdateUser: function () {
+        var user = this.GetUserInfoModel();
+        if (!this.ValidateUser(user)) {
+            return;
+        }
+        try {
+            $.ajax({
+                url: '/api/User',
+                type: 'PUT',
+                data: user,
+                success: function (data) {
+                    if (data) {
+                        window.location.reload();
+                    }
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
     },
     GetUser: function (callback) {
         try {
@@ -72,8 +89,15 @@ window.User = window.User || {
         var password = passwords[0].value;
         var confirmPassword = passwords[1].value;
         var address = $('textarea.address').val();
-        var user = new UserInfo(userName, password, confirmPassword, address);
-        return user;
+        var id = $('input[type="text"].id').val();
+        if (id == undefined) {
+            var user = new UserInfo(userName, password, confirmPassword, address);
+            return user;
+        }
+        else {
+            var user = new UserInfo(userName, password, confirmPassword, address, id);
+            return user;
+        }
     },
     ValidateUser: function (user) {
         var isValidate = false;
@@ -98,7 +122,15 @@ window.User = window.User || {
             return false;
         }
         return true;
+    },
+    ShowPopup: function (id) {
+        var user = window.User.Users.find(x => x.Id == id);
+        $('input[type="email"].userName').val(user.UserName);
+        $('input[type="text"].id').val(user.Id);
+        var passwords = $('input[type="password"].password');
+        passwords[0].value = user.Password;
+        passwords[1].value = user.Password;
+        $('textarea.address').val(user.Address);
     }
-
 };
 
