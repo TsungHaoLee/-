@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using TH.DB;
 
     public class UserService
     {
@@ -12,6 +13,11 @@
             {
                 using (var db = new DB.DBEntities())
                 {
+                    var isValidate = CheckUserInfo(user);
+                    if(!isValidate)
+                    {
+                        return false;
+                    }
                     if (user == null)
                     {
                         return false;
@@ -48,6 +54,20 @@
                 return false;
             }
         }
+
+        private bool CheckUserInfo(User user)
+        {
+            try
+            {
+                var mail = new System.Net.Mail.MailAddress(user.UserName);
+                return mail.Address == user.UserName;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<DB.User> GetUsers()
         {
             using (var db = new DB.DBEntities())
